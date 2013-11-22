@@ -20,7 +20,7 @@ function tampilkanGambar( e ) {
 }
 
 function tampilkanProses( el ) {
-    el.style.display = "inline";
+    proses.value = proses.innerHTML = 0;
 }
 
 function sembunyikanProses() {
