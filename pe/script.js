@@ -15,6 +15,11 @@ function tampilkanGambar( e ) {
     if (xhr.status == 200) {
         proses.value = proses.innerHTML = 100;
         var blob = new Blob([xhr.response], {type: 'image/png'});
+
+        gambar.onload = function(e) {
+            window.URL.revokeObjectURL(gambar.src); // Clean up after yourself.
+        };
+
         gambar.src = window.URL.createObjectURL(blob);
     }
 }
