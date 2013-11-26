@@ -26,12 +26,31 @@ function elSelesaiDrag( e ) {
   });  
 }
 
+function elDragOver() {
+  
+}
+
+function tambahOver() {
+  this.classList.add("over");
+}
+
+function hapusOver() {
+  this.classList.remove("over");
+}
+
 // Memasang event handler untuk proses dragging
 [].forEach.call(items, function( el ) {
   // ketika element mulai di drag
   el.addEventListener("dragstart", elMulaiDrag, false);
   // ketika element di drag
   el.addEventListener("drag", elDrag, false);
-
+  // ketika element selesai di drag
   el.addEventListener("dragend", elSelesaiDrag, false);
+
+  el.addEventListener("dragover", elDragOver, false);
+  el.addEventListener("dragenter", tambahOver, false);
+  el.addEventListener("dragleave", hapusOver, false);
 });
+
+
+
