@@ -1,15 +1,21 @@
-var items = document.querySelectorAll(".item");
+var items = document.querySelectorAll(".item"),
+    direction = 1;
 
 function elMulaiDrag( el ) {
   // jadikan transparan
   this.style.opacity = 0.5;
 }
 
-function elDrag( el ) {
-  this.style.opacity = parseFloat(this.style.opacity) + 0.05;
+function elDrag( e ) {
+  var size = parseInt(getComputedStyle(e.target, null).width, 10) + direction;
 
-  if (this.style.opacity >= 1) {
-    this.style.opacity = 0;
+  [].forEach.call(items, function( el ) {
+    el.style.width =  size + "px";
+    el.style.height = size + "px";
+  });
+
+  if (size >= 150 || size <= 50) {
+    direction *= -1;
   }
 }
 

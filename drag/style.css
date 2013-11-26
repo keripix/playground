@@ -1,16 +1,25 @@
-.container {
-    width: 950px;
-    height: 310px;
-    background-color: #E74C3C;
-}
-
 .item {
-    width: 300px;
-    height: 300px;
+    width: 100px;
+    height: 100px;
     margin: 0 5px;
-    background-color: #ECF0F1;
-    border: 1px solid #BDC3C7;
+    background-color: #E74C3C;
     border-radius: 50%;
     cursor: move;
     display: inline-block;
+    position: fixed;
+}
+
+.left {
+    top: 10px;
+    left: 20px;
+}
+
+.middle {
+    top: 10px;
+    left: 330px;
+}
+
+.right {
+    top: 10px;
+    left: 640px;
 }
