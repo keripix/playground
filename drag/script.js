@@ -26,7 +26,7 @@ function elSelesaiDrag( e ) {
   });  
 }
 
-function elDragOver() {
+function selamaOver() {
   
 }
 
@@ -46,9 +46,11 @@ function hapusOver() {
   el.addEventListener("drag", elDrag, false);
   // ketika element selesai di drag
   el.addEventListener("dragend", elSelesaiDrag, false);
-
-  el.addEventListener("dragover", elDragOver, false);
+  // ketika element terus bergerak di atas wilayah yang dapat di drop
+  el.addEventListener("dragover", selamaOver, false);
+  // ketika element memasuki wilayah drop
   el.addEventListener("dragenter", tambahOver, false);
+  // ketika element meninggalkan wilayah drop
   el.addEventListener("dragleave", hapusOver, false);
 });
 
