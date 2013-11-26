@@ -19,10 +19,19 @@ function elDrag( e ) {
   }
 }
 
+function elSelesaiDrag( e ) {
+  [].forEach.call(items, function( el ) {
+    el.style.width =  "100px";
+    el.style.height = "100px";
+  });  
+}
+
 // Memasang event handler untuk proses dragging
 [].forEach.call(items, function( el ) {
   // ketika element mulai di drag
   el.addEventListener("dragstart", elMulaiDrag, false);
   // ketika element di drag
   el.addEventListener("drag", elDrag, false);
+
+  el.addEventListener("dragend", elSelesaiDrag, false);
 });
