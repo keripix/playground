@@ -1,0 +1,34 @@
+.middle {
+    margin: auto;
+    text-align: center;
+}
+
+.dropzone {
+    background-color: #BDC3C7;
+    width: 60%;
+    min-height: 300px;
+}
+
+#filelist {
+    overflow-y: auto;
+    max-width: 60%;
+    height: 250px;
+
+    margin: auto;
+
+    background-color: #ECF0F1;
+}
+
+.item {
+    text-align: left;
+    display: inline-block;
+    height: 200px;
+    width: 45%;
+    border: 2px solid #E74C3C;
+    padding: 4px;
+    overflow: auto;
+}
+
+.over {
+    border: 8px dashed #95A5A6;
+}
