@@ -19,6 +19,12 @@
     background-color: #ECF0F1;
 }
 
+progress {
+    height: 6px;
+    width: 100%;
+    background-color: #E74C3C;
+}
+
 .item {
     text-align: left;
     display: inline-block;

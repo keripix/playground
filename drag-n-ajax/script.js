@@ -84,12 +84,18 @@ function showFileInfo( file ) {
   var el = document.createElement("div");
 
   el.classList.add("item");
-  el.innerHTML = "<img src='file.png'></img>" +
-  "<p>Nama: " + file.name + "</p>" + 
-  "<p>Jenis: " + file.type + "</p>" +
-  "<p>Ukuran: " + file.size + "</p>";
+  el = createInfoElement(el,file);
 
   filelist.appendChild(el);
+}
+
+function createInfoElement( parentEl, file ) {
+  parentEl.innerHTML = "<img src='file.png'></img>";
+  parentEl.innerHTML += "<p>Nama: " + file.name + "</p>";
+  parentEl.innerHTML += "<p>Jenis: " + file.type + "</p>";
+  parentEl.innerHTML += "<p>Ukuran: " + file.size + "</p>";
+
+  return parentEl;
 }
 
 // tambahkan berkas ini ke instanta FormData
@@ -103,15 +109,43 @@ function appendToFormData( file ) {
 function uploadFiles( data ) {
   var xhr = new XMLHttpRequest();    
 
+  var progressBar = addProgressBar(filelist);
+
   xhr.open("POST", "upload.php", true);
-  xhr.addEventListener("load", onLoad);
+
+  xhr.addEventListener("load", function() {
+    setProgressBarValue(progressBar, 100);
+    onLoad(this);
+  });
+
+  xhr.upload.addEventListener("progress", function( e ) {
+    if (e.lengthComputable) {
+      setProgressBarValue( progressBar, (e.loaded / e.total * 100 | 0));
+    }
+  });
 
   xhr.send(data);
 }
 
+function setProgressBarValue( progressBar, value ) {
+  progressBar.value = value;
+}
+
+function addProgressBar( parentEl ) {
+  var progressBar = document.createElement("progress");
+
+  progressBar.setAttribute("min", 0);
+  progressBar.setAttribute("max", 100);
+  progressBar.setAttribute("value", 0);
+
+  parentEl.appendChild(progressBar);
+
+  return progressBar;
+}
+
 // ketika pengunggahan selesai
-function onLoad() {
-  if (this.status === 200) {
+function onLoad( xhr ) {
+  if (xhr.status === 200) {
     alert("Berkas berhasil di upload");    
   } else {
     alert("Berkas gagal di upload");
