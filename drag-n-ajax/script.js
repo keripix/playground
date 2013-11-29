@@ -111,7 +111,7 @@ function uploadFiles( data ) {
 
   var progressBar = addProgressBar(filelist);
 
-  xhr.open("POST", "upload.php", true);
+  xhr.open("POST", "http://playground.pethak.com/upload.php", true);
 
   xhr.addEventListener("load", function() {
     setProgressBarValue(progressBar, 100);
@@ -127,10 +127,12 @@ function uploadFiles( data ) {
   xhr.send(data);
 }
 
+// memasang nilai progress bar
 function setProgressBarValue( progressBar, value ) {
   progressBar.value = value;
 }
 
+// menambahkan progressbar pada parentEl
 function addProgressBar( parentEl ) {
   var progressBar = document.createElement("progress");
 
