@@ -1,9 +1,13 @@
+// shortcut untuk nantinya
+var forEach = Array.prototype.forEach;
+
 var dropzone = document.querySelectorAll(".dropzone"),
     filelist = document.getElementById("filelist"),
-    forEach = Array.prototype.forEach,
+    uploadButton = document.getElementById("uploadButton"),
+
     files = [],
-    formData = new FormData(),
-    uploadButton = document.getElementById("uploadButton");
+
+    formData = new FormData();
 
 uploadButton.addEventListener("click", function() {
   uploadFiles(formData);
@@ -20,6 +24,7 @@ forEach.call(dropzone, function( el ) {
 
 });
 
+// ketika mouse memasuki wilayah penjatuhan
 function onDragEnter( e ) {
   e.preventDefault();
 
@@ -28,11 +33,13 @@ function onDragEnter( e ) {
   return false;
 }
 
+// ketika mouse bergerak di atas wilayah penjatuhan
 function onDragOver( e ) {
   e.preventDefault();
   return false;
 }
 
+// ketika mouse bergerak keluar dari wilayah penjatuhan
 function onDragLeave( e ) {
   e.preventDefault();
 
@@ -41,6 +48,7 @@ function onDragLeave( e ) {
   return false;
 }
 
+// ketika terjadi proses penjatuhan benda yang diseret
 function onDrop( e ) {
   e.preventDefault();
 
@@ -53,7 +61,12 @@ function onDrop( e ) {
   return false;
 }
 
+// pasang/hapus class over
 function toggleOver( el ) {
+  // Bila element ini tidak memiliki class over,
+  // maka kita tambahkan class over.
+  // Namun, bila element memiliki class over,
+  // maka kita hapus class over dari element ini.
   el.classList.toggle("over");
 }
 
@@ -61,11 +74,12 @@ function toggleOver( el ) {
 
 function processFiles( files ) {
   for (var i = 0, length = files.length; i < length; i++) {
-    showFileInfo(files[0]);
-    appendToFormData(files[0]);
+    showFileInfo(files[i]);
+    appendToFormData(files[i]);
   }
 }
 
+// menampilkan informasi berkas
 function showFileInfo( file ) {
   var el = document.createElement("div");
 
@@ -78,13 +92,14 @@ function showFileInfo( file ) {
   filelist.appendChild(el);
 }
 
+// tambahkan berkas ini ke instanta FormData
 function appendToFormData( file ) {
-  formData.append("file", file);
+  formData.append("file[]", file);
 }
 
 /* PROSES PENGUNGGAHAN */
 
-// mulai upload
+// mulai mengunggah
 function uploadFiles( data ) {
   var xhr = new XMLHttpRequest();    
 
@@ -94,12 +109,12 @@ function uploadFiles( data ) {
   xhr.send(data);
 }
 
+// ketika pengunggahan selesai
 function onLoad() {
   if (this.status === 200) {
     alert("Berkas berhasil di upload");    
   } else {
     alert("Berkas gagal di upload");
   }
-  
 }
 
