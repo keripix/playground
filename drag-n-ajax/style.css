@@ -45,13 +45,23 @@ progress::-webkit-progress-value {
 .item {
     text-align: left;
     display: inline-block;
-    height: 200px;
+    height: 100px;
     width: 45%;
-    border: 2px solid #E74C3C;
+    border-bottom: 2px solid #C4C7C8;
     padding: 4px;
-    overflow: auto;
+    overflow-y: auto;
+    margin-right: 20px;
 }
 
 .over {
     border: 8px dashed #95A5A6;
+}
+
+.left {
+    float: left;
+}
+
+.info {
+    font-size: 80%;
+    line-height: 1.0em;
 }

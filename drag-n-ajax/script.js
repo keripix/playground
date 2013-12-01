@@ -79,21 +79,28 @@ function processFiles( files ) {
   }
 }
 
-// menampilkan informasi berkas
+// `file` adalah sebuah File
 function showFileInfo( file ) {
+  // kita akan membuat element <div> yang akan berisikan
+  // informasi mengenai file
   var el = document.createElement("div");
 
+  // kita berikan sebuah class css terhadapnya
   el.classList.add("item");
-  el = createInfoElement(el,file);
 
+  // kita tentukan isi dari <div> tadi
+  createInfoElement(el, file);
+
+  // kita tambahkan <div> ini di dalam element `filelist`.
+  // lihat struktur html kita
   filelist.appendChild(el);
 }
 
 function createInfoElement( parentEl, file ) {
-  parentEl.innerHTML = "<img src='file.png'></img>";
-  parentEl.innerHTML += "<p>Nama: " + file.name + "</p>";
-  parentEl.innerHTML += "<p>Jenis: " + file.type + "</p>";
-  parentEl.innerHTML += "<p>Ukuran: " + file.size + "</p>";
+  parentEl.innerHTML = "<div class='left'><img src='file.png'></img></div>";
+  parentEl.innerHTML += "<div class='info'><p>Nama: " + file.name + "</p>" +
+                      "<p>Jenis: " + file.type + "</p>" +
+                      "<p>Ukuran: " + file.size + " bytes</p></div>";
 
   return parentEl;
 }
@@ -132,15 +139,31 @@ function setProgressBarValue( progressBar, value ) {
   progressBar.value = value;
 }
 
-// menambahkan progressbar pada parentEl
 function addProgressBar( parentEl ) {
+  // mengambil anak pertama dari parentEl
+  var firstChild = parentEl.firstChild;
+
+  // bila anak pertama adalah sebuah element <progress>
+  // maka kita tidak perlu membuat element <progress> lagi
+  if (firstChild.tagName == "PROGRESS") {
+    firstChild.value = 0;
+    return firstChild;
+  }
+
+  // buat element <progress>
   var progressBar = document.createElement("progress");
 
+  // memasang nilai pada <progress>
   progressBar.setAttribute("min", 0);
   progressBar.setAttribute("max", 100);
   progressBar.setAttribute("value", 0);
 
-  parentEl.insertBefore(progressBar, parentEl.firstChild);
+  // kita akan menambahkan element <progress> di atas pada
+  // parentEl, dan menjadikannya anak pertama dari
+  // parentEl.
+  // Jadi, kita akan menambahkan progressBar pada parentEl,
+  // pada posisi sebelum firstChild
+  parentEl.insertBefore(progressBar, firstChild);
 
   return progressBar;
 }
