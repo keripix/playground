@@ -1,21 +1,20 @@
-.middle {
+.container {
+    width: 60%;
     margin: auto;
+}
+
+.middle {
     text-align: center;
 }
 
 .dropzone {
     background-color: #BDC3C7;
-    width: 60%;
     min-height: 300px;
 }
 
 #filelist {
     overflow-y: auto;
-    max-width: 60%;
     height: 250px;
-
-    margin: auto;
-
     background-color: #ECF0F1;
 }
 
@@ -64,4 +63,11 @@ progress::-webkit-progress-value {
 .info {
     font-size: 80%;
     line-height: 1.0em;
+}
+
+#uploadButton {
+    margin-top: 10px;
+    width: 20%;
+    margin-left: 40%;
+    height: 32px;
 }
